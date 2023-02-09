@@ -47,3 +47,8 @@ services:
  Then you'll need to ensure the Security Group allows for TCP connections on port 27017. For testing you can expose this to your own IP address, then once you launch the Express Server, you can lock down 27017 access to the Express application server, or instances security group.
 
  You can access the mongo-express GUI via your ec2 instance host or IP address on port `8081`. From there you can create a `data` database, and within the `data` database, create a `records` collection.
+
+ ## React Client
+
+ The React Client utilizes a proxy for making `fetch` requests to the backend server API:
+ https://create-react-app.dev/docs/proxying-api-requests-in-development/
