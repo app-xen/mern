@@ -52,3 +52,13 @@ services:
 
  The React Client utilizes a proxy for making `fetch` requests to the backend server API:
  https://create-react-app.dev/docs/proxying-api-requests-in-development/
+
+ ## Express Server
+
+ For the server to connect to MongoDB, you need to create a `config.env` file with the variable details as shown in `server/config.env.sample`. From there you can run:
+
+ ```bash
+ npm start
+ ```
+
+ which will concurently run the client and server locally for development.
