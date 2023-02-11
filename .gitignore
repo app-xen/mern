@@ -1,2 +1,5 @@
 config.env
 node_modules
+*.pem
+.DS_Store
+./data

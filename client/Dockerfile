@@ -1,11 +1,12 @@
-FROM node:alpine as base
+FROM node:18-alpine as base
 
-WORKDIR /client
+WORKDIR /usr/src/app
 
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
-RUN rm -rf node_modules && npm install --frozen-lockfile && npm cache clean
+RUN rm -rf node_modules && npm install --slient
 
 COPY . .
 
+EXPOSE 3000
 CMD ["npm", "start"]

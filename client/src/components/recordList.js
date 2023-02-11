@@ -25,7 +25,7 @@ export default function RecordList() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`/record/`);
+     const response = await fetch(`/api/record/`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
