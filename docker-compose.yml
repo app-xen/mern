@@ -27,13 +27,15 @@ services:
         restart: always
         depends_on:
             - server
+        links:
+            - server
         build:
             context: ./client
             dockerfile: Dockerfile
             target: base
         command: npm start
         ports:
-            - 3000:3000 # run this on port 80 on a web server e.g. "3000:80"
+            - "3000:3000" # run this on port 80 on a web server e.g. "3000:80"
             
         volumes:
             - ./client/:/usr/app
@@ -60,7 +62,7 @@ services:
             - mongo
         environment:
             ME_CONFIG_MONGODB_ADMINUSERNAME: root
-            ME_CONFIG_MONGODB_ADMINPASSWORD: root 
+            ME_CONFIG_MONGODB_ADMINPASSWORD:  
             ME_CONFIG_BASICAUTH_USERNAME: admin
             ME_CONFIG_BASICAUTH_PASSWORD: admin
         networks:

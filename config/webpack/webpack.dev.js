@@ -72,7 +72,7 @@ module.exports = {
     disableHostCheck: false,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:5000'
+      '/api': 'http://server:5000'
     }
   },
   devtool: 'eval-source-map'
