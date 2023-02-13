@@ -1,29 +1,33 @@
 # Portable MERN Stack
 
-This is an application stack consisting of:
+A Docker Compose powered MERN (MongoDB, Express.JS, React, Node.js) Stack.
 
- - An Express.js Node.js server with MongoDB Client
- - A React client
+## Getting Started
 
- The Express server utilizes a `config.env` file to reference the MongoDB database connection. This can be a connection to MongoDB Atlas, an EC2 server running MongoDB (with Port 27017 access), or even an AWS DocumentDB. You can also utilize the AppXen mongo-express server which provides a web UI for managing your data, and gives you a fully portal MongoDB using Docker in one-click. Ensure port 27017 is available to either your own IP (for development), and/or to the EC2 instance/s that will access it (set TCP 271017 access to the security group you attach to your web server instance/s).
+Install Docker and run w/Docker Compose:
 
- You can access the mongo-express GUI via your ec2 instance host or IP address on port `8081`. From there you can create a `data` database, and within the `data` database, create a `records` collection.
+```bash
+docker-compose up --build
+```
 
- ## React Client
+Access the local server at http://localhost:3000/
 
- The React Client utilizes a proxy for making `fetch` requests to the backend server API:
- https://create-react-app.dev/docs/proxying-api-requests-in-development/
+Bring the stack down:
 
- ## Express Server
+```bash
+docker-compose down --volumes
+```
 
- For the server to connect to MongoDB, you need to create a `config.env` file with the variable details as shown in `server/config.env.sample`. From there you can run:
+### Running in Development
 
- ```bash
- npm start
- ```
+You can run the development server with NPM:
 
- This will concurently run the both the client, and the server locally while developing.
+```bash
+npm i
+npm start
+```
 
- ## Deployment
+Server runs on http://localhost:5000, and the React app proxies API requests to the Express server.
 
- Coming Soon
+### Running in Production
+Coming soon
