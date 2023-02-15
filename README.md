@@ -1,6 +1,8 @@
 # Portable MERN Stack
 
-A Docker Compose powered MERN (MongoDB, Express.JS, React, Node.js) Stack.
+![MERN](assets/appxen-mern.png)
+
+A Portable, Docker Compose powered MERN (MongoDB, Express.JS, React, Node.js) Stack you can run anywhere!
 
 ## Getting Started
 
