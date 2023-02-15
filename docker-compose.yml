@@ -8,12 +8,15 @@ services:
         restart: always
         depends_on:
             - mongo
+        links:
+            - mongo
         build:
             context: ./server
             dockerfile: Dockerfile
             target: base
-        ports:
-            - "5000:5000"
+        # if you want to access the server via the host e.g. localhost:500 uncomment this and the EXPOSE paramter in server/Dockerfile
+        #ports:
+        #    - "5000:5000" 
         env_file: ./config.env
         volumes:
             - ./server/:/usr/src/app
@@ -34,9 +37,9 @@ services:
             dockerfile: Dockerfile
             target: base
         command: npm start
+        # run this on port 80 on a web server e.g. "3000:80"
         ports:
-            - "3000:3000" # run this on port 80 on a web server e.g. "3000:80"
-            
+            - "3000:3000" 
         volumes:
             - ./client/:/usr/app
             - /usr/app/node_modules
@@ -46,8 +49,9 @@ services:
     mongo:
         image: mongo
         restart: always
-        ports:
-            - "27017:27017"
+        # If you want to access the database outside the host or expose it, uncomment this and lock down access accordingly
+        #ports:
+        #    - "27017:27017"
         volumes:
             - ./data:/data/db
         networks:
@@ -60,9 +64,14 @@ services:
             - "8081:8081"
         depends_on:
             - mongo
+        links:
+            - mongo
         environment:
             ME_CONFIG_MONGODB_ADMINUSERNAME: root
-            ME_CONFIG_MONGODB_ADMINPASSWORD:  
+            # there isn't a need for a password here since the database is not exposed outside the container
+            # If you were to expose the 27017, and allow external connections you'd want to lock this down
+            # properly.
+            ME_CONFIG_MONGODB_ADMINPASSWORD:
             ME_CONFIG_BASICAUTH_USERNAME: admin
             ME_CONFIG_BASICAUTH_PASSWORD: admin
         networks:
