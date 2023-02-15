@@ -35,10 +35,16 @@ If you change the server, you can re-build the container:
 docker-compose down --volumes
 docker-compose up --build
 ```
+### Mongo DB
 
+The Mongo database does not expose port `27017` by default and is only accessible to the Express Server. If you'd like to change this see comments in the docker-compose.yml file to expose ports and set password/security. For more details on container arguments/properties: https://hub.docker.com/_/mongo
+
+### Express Server
 The server runs on port 5000 within the container which the `client` is linked to. The docker `link` ensures that the server port is not exposed to the host and only the client can access it. The React app proxies API requests to the Express server. The React client app will run on http://localhost:3000 and is exposed to the host. If you were running on a web server, you can change the port as commented in the docker-compose to PORT 80 or 443.
 
 > NOTE: By default Port 5000, orn 27017 (mongodb) are **NOT** exposed by the stack. This is for optimial security, if developing and you want to access the server or database, just uncomment the `ports` section in the docker-compose file for the server and mongo services, as well as the EXPOSE parameter in the server/Dockerfile.
+
+### Mongo Express
 
 Mongo Express is running by default on port `8081` you can manage your MongoDB database there, and access with username/password defined in the docker-compose file. To NOT run the mongo express server, just comment out/remove the `mongo-express` service from the docker-compose.yml file.
 
